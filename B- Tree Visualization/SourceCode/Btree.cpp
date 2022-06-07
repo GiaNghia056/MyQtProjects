@@ -21,7 +21,7 @@ QString BTreeNode::traverse()
         res += RenderArea::toString(Keys[i]) + " ";
     }
     if (Leaf == false)
-        Child[Size]->traverse();
+        res += Child[Size]->traverse();
     return res;
 }
 
@@ -47,6 +47,7 @@ int BTreeNode::findKey(int key)
 bool BTreeNode::remove(int k)
 {
     int idx = findKey(k);
+    bool found = (Keys[idx] == k);
     if (idx < Size && Keys[idx] == k)
     {
         if (Leaf)
@@ -129,14 +130,10 @@ void BTreeNode::fill(int idx)
         if (idx != Size)
         {
             merge(idx);
-           //if(Child[idx]->getSize() == 2 * MinDegree - 1)
-              //  splitChild(idx,Child[idx]);
         }
         else
         {
             merge(idx - 1);
-            //if(Child[idx-1]->getSize() == 2 * MinDegree - 1)
-               // splitChild(idx-1,Child[idx-1]);
         }
     }
 }

@@ -3,6 +3,8 @@
 #include <vector>
 #include <algorithm>
 #include<QString>
+#include<utility>
+using namespace std;
 class BTree;
 class BTreeNode
 {
